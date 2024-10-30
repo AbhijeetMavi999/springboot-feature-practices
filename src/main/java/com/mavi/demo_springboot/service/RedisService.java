@@ -26,16 +26,16 @@ public class RedisService {
         return userRepository.findAll();
     }
 
-    @Cacheable(key = "#id", value = "User")
+    @Cacheable(key = "#id", value = "users")
     public User getByUserId(Long id) {
         log.info("called getByUserId() from RedisService");
         return userRepository.findById(id).orElse(null);
     }
 
-    @CacheEvict(key = "#id", value = "User")
+    @CacheEvict(key = "#id", value = "users")
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 }
 
-// For Update use @CachePut(key = "#id", value = "User")
+// For Update use @CachePut(key = "#id", value = "users")
